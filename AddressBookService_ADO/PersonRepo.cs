@@ -57,7 +57,8 @@ namespace AddressBookService_ADO
                 PersonModel personModel = new PersonModel();
                 using (this.connection)
                 {
-                    string query = @"select count(city) from AddressBookDB group by city;";
+
+                    string query = @"select firstname from AddressBookDB where city = 'namrup' order by(firstname);";
                     SqlCommand cmd = new SqlCommand(query, this.connection);
                     this.connection.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
@@ -65,7 +66,7 @@ namespace AddressBookService_ADO
                     {
                         while (dr.Read())
                         {
-                            Console.WriteLine(dr.GetInt32(0));
+                            Console.WriteLine(dr.GetString(0));
                             System.Console.WriteLine("\n");
                         }
                     }
