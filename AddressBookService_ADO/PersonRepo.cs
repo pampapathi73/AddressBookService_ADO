@@ -17,8 +17,7 @@ namespace AddressBookService_ADO
                 using (this.connection)
                 {
 
-                    SqlCommand command = new SqlCommand("SpAddPersonDetails", this.connection);
-                    command.CommandType = System.Data.CommandType.StoredProcedure;
+                    SqlCommand command = new SqlCommand("update AddressBookDB set city='dib' where firstname='Mukti'", this.connection);
                     command.Parameters.AddWithValue("@FirstName", model.FirstName);
                     command.Parameters.AddWithValue("@LastName", model.LastName);
                     command.Parameters.AddWithValue("@Address", model.Address);
