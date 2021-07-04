@@ -50,35 +50,23 @@ namespace AddressBookService_ADO
             return false;
         }
 
-        public void GetAllEmployee()
+        public void GetSize()
         {
             try
             {
                 PersonModel personModel = new PersonModel();
                 using (this.connection)
                 {
-
-                    SqlCommand cmd = new SqlCommand(@"select * from AddressBookDB where state='assam'", this.connection);
+                    string query = @"select count(city) from AddressBookDB group by city;";
+                    SqlCommand cmd = new SqlCommand(query, this.connection);
                     this.connection.Open();
                     SqlDataReader dr = cmd.ExecuteReader();
                     if (dr.HasRows)
                     {
                         while (dr.Read())
                         {
-                            personModel.FirstName = dr.GetString(0);
-                            personModel.LastName = dr.GetString(1);
-                            personModel.Address = dr.GetString(2);
-                            personModel.PhoneNumber = dr.GetString(6);
-                            personModel.zip = dr.GetInt32(5);
-                            personModel.City = dr.GetString(3);
-                            personModel.State = dr.GetString(4);
-                            personModel.AddressBookName = dr.GetString(8);
-                            personModel.Email = dr.GetString(7);
-                            personModel.Type = dr.GetString(9);
-
-                            System.Console.WriteLine(personModel.FirstName + " " + personModel.LastName + " " + personModel.Address + " " + personModel.City + " " + personModel.zip + " " + personModel.State + " " + personModel.PhoneNumber + " " + personModel.AddressBookName + " " + personModel.Type);
+                            Console.WriteLine(dr.GetInt32(0));
                             System.Console.WriteLine("\n");
-
                         }
                     }
                     else
