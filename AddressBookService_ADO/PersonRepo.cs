@@ -10,14 +10,14 @@ namespace AddressBookService_ADO
         public static string connectionString = @"Data Source=DESKTOP-F351DOC;Initial Catalog=Address_Book_ServiceDB;Integrated Security=True";
         SqlConnection connection = new SqlConnection(connectionString);
 
-        public bool AddEmployee(PersonModel model)
+        public bool DeleteEmployee(PersonModel model)
         {
             try
             {
                 using (this.connection)
                 {
 
-                    SqlCommand command = new SqlCommand("update AddressBookDB set city='dib' where firstname='Mukti'", this.connection);
+                    SqlCommand command = new SqlCommand("delete from AddressBookDB where firstname='Mukti' ", this.connection);
                     command.Parameters.AddWithValue("@FirstName", model.FirstName);
                     command.Parameters.AddWithValue("@LastName", model.LastName);
                     command.Parameters.AddWithValue("@Address", model.Address);
